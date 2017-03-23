@@ -1,124 +1,84 @@
 package com.mercadolibre.dojos;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+
+import com.mercadolibre.dojos.exception.OccupiedCellException;
+import com.mercadolibre.dojos.model.IBomberman;
+import com.mercadolibre.dojos.model.ICell;
+import com.mercadolibre.dojos.model.IEnemy;
+import com.mercadolibre.dojos.model.impl.Bomberman;
+import com.mercadolibre.dojos.model.impl.Cell;
+import com.mercadolibre.dojos.model.impl.Enemy;
+import com.mercadolibre.dojos.model.impl.Wall;
 
 /**
  * Tests for the dojo.
  */
 public class DojoTest {
 	
-	private SpreadSheet sheet;
+	private IBomberman bomber;
 	
 	@Before
-	public void setup() {
-		this.sheet = new SpreadSheet();
+	public void setup() throws OccupiedCellException {
+		 this.bomber = new Bomberman( new Cell() );
 	}
 	
 	@Test
-	@Ignore
-	public void testSpreadSheet_withNumericValues_shouldPopulateTwoCells() {
+	public void testBomberman_whenHeStepsIntoAnEmptyCell_shouldMoveIntoThatCell() throws OccupiedCellException {
+		// SETUP
+		ICell here = new Cell();
 		
-		// ... 
-        // Code here!
-        // ... 
+		// WHEN
+		this.bomber.stepsIn(here);
 		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
+		// THEN
+		assertThat(this.bomber.isIn(here), is( true ));
+	}
+	
+	@Test(expected = OccupiedCellException.class)
+	public void testBomberman_whenHeStepsIntoAnOccupiedCell_shouldNotMoveAndThrowException() throws OccupiedCellException {
+		// SETUP
+		final Cell here = new Cell( new Wall() );
 		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((Integer) a2, is( equalTo(2) ));
+		// WHEN
+		this.bomber.stepsIn(here);
 	}
 	
 	@Test
-	@Ignore
-	public void testSpreadSheet_withALabelAndANumericValue_shouldPopulateTwoCells() {
+	public void testBomberman_whenStepsIntoACellWhichIsOccupiedWithAnEnemy_shouldDie() throws OccupiedCellException {
+		// SETUP
+		final Cell here = new Cell();
+		final IEnemy enemy = new Enemy(here);
 		
-		// ... 
-        // Code here!
-        // ... 
+		// PRE VALIDATION
+		assertThat(here.isOccupiedBy(enemy), is( true ));
 		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
+		// WHEN
+		this.bomber.stepsIn(here);
 		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((String) a2, is( equalTo("Valor:") ));
+		// THEN
+		assertThat(here.isOccupiedBy(enemy), is( true ));
+		assertThat(here.isOccupiedBy(this.bomber), is( false ));
+		assertThat(this.bomber.isDead(), is( true ));
+		assertThat(this.bomber.isAlive(), is( false ));
 	}
 	
-	@Test
-	@Ignore
-	public void testSpreadSheet_withAReferenceToAnotherCell_shouldReturnTheValueOfTheReferencedCell() {
-		
-		// ... 
-        // Code here!
-        // ... 
-		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
-		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((Integer) a2, is( equalTo(1) ));
-	}
-	
-	@Test
-	@Ignore
-	public void testSpreadSheet_withASummaryFunction_shouldReturnTheResultOfTheSummary() {
-		
-		// ... 
-        // Code here!
-        // ... 
-
-		this.sheet.set("a1", 1);
-		this.sheet.set("a2", 2);
-		
-		Object a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(3) ));
-		
-		this.sheet.set("a2", 9);
-		
-		a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(10) ));
-	}
-	
-	@Test
-	@Ignore
-	public void testSpreadSheet_withASummaryFunctionAndABrokenRange_shouldReturnTheResultOfTheSummary() {
-		
-		// ... 
-        // Code here!
-        // ... 
-		
-		this.sheet.set("a1", 1);
-		this.sheet.set("a2", 2);
-		
-		Object a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(3) ));
-		
-		this.sheet.set("a2", 9);
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(10) ));
-	}
+//	@Test
+//	public void testBomberman_whenBombermanLeavesABoomNextToABrick_shouldExplodeAndDissapearTheBrick() throws OccupiedCellException {
+//		// SETUP
+//		final Cell here = new Cell();
+//		final IOccupier brick = new Brick(here);
+//		
+//		// WHEN
+//		this.bomber.leaveBoomIn(here);
+//		
+//		// THEN
+//		assertThat(here.isOccupiedBy(brick), is( false ));
+//		assertThat(here.isOccupied(), is( true ));
+//	}
 	
 }
