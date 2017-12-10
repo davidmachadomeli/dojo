@@ -1,5 +1,15 @@
 ## Dojos
 
+## Ejercicios
+
+- [SpreadSheet][2]
+- [Bomberman][3]
+- [Pacman][4]
+- [Congrats][5]
+- [Venta de Items][6]
+- [Combinar medios de pagos][7]
+- [Inconsistencias en APPs][8]
+
 ### Problemática
 
 1. Cuantos if y/o else if tiene nuestro código? 
@@ -10,7 +20,10 @@
 6. Diferenciamos Uso vs Construcción? 
 7. Un cambio de requerimiento afecta a varias entidades de nuestro modelo? 
 8. El lenguaje que utilizamos en el código es diferente al que utiliza la compañía? 
-9. Sabemos cuál es el impacto de estas prácticas?
+9. Es difícil escribir nuevos tests?
+10. Tenemos métodos que nos permiten preguntarle a un objeto acerca de su estado (```Payment>>isApproved```, ```Payment>>isCreditCard```, ```Shipping>>isSamedayDelivery```, etc.).
+11. Sabemos cuál es el impacto de estas prácticas?
+12. Y como podemos evitarlas?
 
 Si algunas de estas cosas se tornaron cotidianas, podríamos decir que nuestro código es de mala calidad!
 
@@ -43,3 +56,21 @@ Si bien tengo un ejercicios para plantear les propongo que compartan algún prob
 #### Comentarios Varios
 
 Se que algunos no van a poder asistir; a estas personas les propongo que sumen algún otro interesado para que participe.
+
+## Es la primera vez que desarrollo en Javascript
+
+Para los que elijan JS como lenguaje para realizar el dojo aquí encontrarán ejemplos de código para:
+- Declarar y definir una clase: ([dojo_base/javascript/MyClass.js](dojo_base/javascript/MyClass.js))
+- Como definir la igualdad de instancias: ([dojo_base/javascript/MyClass.js](dojo_base/javascript/MyClass.js#L7))
+- Como lanzar exceptions: ([dojo_base/javascript/MyClass.js](dojo_base/javascript/MyClass.js#L12))
+- Como escribir un test para verificar valor devuelto: ([dojo_base/javascript/test/solution.js](dojo_base/javascript/test/solution.js#L10))
+- Como escribir un test para verificar lanzamiento de exception: ([dojo_base/javascript/test/solution.js](dojo_base/javascript/test/solution.js#L15))
+
+
+[2]: ./dojo_2
+[3]: ./dojo_3
+[4]: ./dojo_4
+[5]: ./dojo_5
+[6]: ./dojo_6
+[7]: ./dojo_7
+[8]: ./dojo_8
