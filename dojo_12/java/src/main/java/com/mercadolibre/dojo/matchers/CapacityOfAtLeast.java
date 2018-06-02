@@ -14,7 +14,7 @@ public class CapacityOfAtLeast implements Matcher {
     }
 
     @Override
-    public IClassroom findIfMatchesOrElse(Classroom classroom, NoClassroom noClassroom) {
-        return classroom.returnIfHasAtLeastPersonsOrElse(persons, noClassroom);
+    public IClassroom returnIfMatchesOrElse(Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
+        return classroomIfMatches.returnIfHasAtLeastAsManyPersonsOrElse(this.persons, classroomIfDoesNotMatches);
     }
 }

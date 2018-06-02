@@ -4,18 +4,14 @@ import com.mercadolibre.dojo.classrooms.IClassroom;
 
 public class Persons {
 
-    private Integer quantityOfPersons;
+    private Integer quantity;
 
-    public Persons(Integer quantityOfPersons) {
-        this.quantityOfPersons = quantityOfPersons;
+    public Persons(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public IClassroom gte(Persons persons, IClassroom classroomIfGTE, IClassroom classroomIfNotGTE) {
-        return persons.gte(this.quantityOfPersons, classroomIfGTE, classroomIfNotGTE);
-    }
-
-    public IClassroom gte(Integer quantityOfPersons, IClassroom classroomIfGTE, IClassroom classroomIfNotGTE) {
-        return quantityOfPersons >= this.quantityOfPersons ? classroomIfGTE : classroomIfNotGTE;
+    public IClassroom gte(Persons personsToMatch, IClassroom classroomIfGTE, IClassroom classroomIfNotGTE) {
+        return this.quantity >= personsToMatch.quantity ? classroomIfGTE : classroomIfNotGTE;
     }
 
 }
