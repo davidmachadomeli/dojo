@@ -9,14 +9,14 @@ import static java.util.Arrays.asList;
 
 public class ClassroomsPool {
 
-    private List<Classroom> classrooms;
+    private List<Classroom> availableClassrooms;
 
-    public ClassroomsPool(Classroom... classrooms) {
-        this.classrooms = asList(classrooms);
+    public ClassroomsPool(Classroom... availableClassrooms) {
+        this.availableClassrooms = asList(availableClassrooms);
     }
 
     public IClassroom searchClassroomFor(Requisition requisition) {
-        return requisition.searchMatchingClassroomFrom(this.classrooms);
+        return requisition.searchMatchingClassroomFrom(this.availableClassrooms);
     }
 
 }

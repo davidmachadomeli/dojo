@@ -19,11 +19,12 @@ public class Classroom implements IClassroom {
         return this;
     }
 
-    public IClassroom returnIfMatchOrElse(Matcher matcher, NoClassroom noClassroom) {
-        return matcher.findIfMatchesOrElse(this, noClassroom);
+    public IClassroom returnIfMatchesOrElse(Matcher matcher, IClassroom classroomIfDoesNotMatches) {
+        return matcher.returnIfMatchesOrElse(this, classroomIfDoesNotMatches);
     }
 
-    public IClassroom returnIfHasAtLeastPersonsOrElse(Persons persons, NoClassroom noClassroom) {
-        return this.personsCapacity.gte(persons, this, noClassroom);
+    public IClassroom returnIfHasAtLeastAsManyPersonsOrElse(Persons personsToMatch, IClassroom classroomIfDoesNotMatches) {
+        return this.personsCapacity.gte(personsToMatch, this, classroomIfDoesNotMatches);
     }
+
 }

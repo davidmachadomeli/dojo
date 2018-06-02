@@ -26,7 +26,7 @@ public class Requisition {
     private List<IClassroom> classroomsAvailableForRequisition(List<Classroom> classrooms) {
         return classrooms
                 .stream()
-                .map(x -> x.returnIfMatchOrElse(this.matcher, new NoClassroom()))
+                .map(classroom -> classroom.returnIfMatchesOrElse(this.matcher, new NoClassroom()))
                 .collect(toList());
     }
 
