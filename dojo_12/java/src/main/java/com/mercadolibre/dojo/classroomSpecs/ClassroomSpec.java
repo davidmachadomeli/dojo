@@ -5,6 +5,6 @@ import com.mercadolibre.dojo.classrooms.IClassroom;
 
 public interface ClassroomSpec {
 
-    IClassroom returnIfHasAtLeastAsMany(Classroom classroom);
+    IClassroom returnIfMatchesCondition(Classroom classroom);
 
 }

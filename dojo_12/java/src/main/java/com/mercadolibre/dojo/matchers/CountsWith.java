@@ -8,11 +8,11 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class CapacityOfAtLeast implements Matcher {
+public class CountsWith implements Matcher {
 
     private ClassroomSpec spec;
 
-    public CapacityOfAtLeast(ClassroomSpec spec) {
+    public CountsWith(ClassroomSpec spec) {
         this.spec = spec;
     }
 
@@ -23,5 +23,4 @@ public class CapacityOfAtLeast implements Matcher {
                 .map(classroom -> classroom.returnIfMatchesCondition(this.spec))
                 .collect(toList());
     }
-
 }
