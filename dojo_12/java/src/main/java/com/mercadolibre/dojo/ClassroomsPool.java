@@ -15,8 +15,8 @@ public class ClassroomsPool {
         this.availableClassrooms = asList(availableClassrooms);
     }
 
-    public IClassroom searchClassroomFor(Requisition requisition) {
-        return requisition.searchMatchingClassroomFrom(this.availableClassrooms);
+    public IClassroom searchClassroomFor(RequestForClassroom requestForClassroom) {
+        return requestForClassroom.searchMatchingFrom(this.availableClassrooms);
     }
 
 }

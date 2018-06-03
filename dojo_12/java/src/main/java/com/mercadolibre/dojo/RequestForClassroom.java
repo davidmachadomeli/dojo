@@ -7,15 +7,15 @@ import com.mercadolibre.dojo.matchers.Matcher;
 
 import java.util.List;
 
-public class Requisition {
+public class RequestForClassroom {
 
     private Matcher matcher;
 
-    public Requisition(Matcher matcher) {
+    public RequestForClassroom(Matcher matcher) {
         this.matcher = matcher;
     }
 
-    public IClassroom searchMatchingClassroomFrom(List<Classroom> classrooms) {
+    public IClassroom searchMatchingFrom(List<Classroom> classrooms) {
         return this.matcher.returnListOfMatchingClassrooms(classrooms)
                 .stream()
                 .reduce(new NoClassroom(), Challenger::challenge);
