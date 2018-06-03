@@ -31,6 +31,15 @@ class EntitiesEqualsTest {
     }
 
     @Test
+    void label_equals_same_label_should_be_true() {
+        // GIVEN
+        final Label label = new Label("label");
+
+        // EXPECT
+        assertTrue(label.equals(label));
+    }
+
+    @Test
     void label_equals_label_should_be_true() {
         // GIVEN
         final Label labelA = new Label("label");
@@ -48,6 +57,15 @@ class EntitiesEqualsTest {
 
         // EXPECT
         assertFalse(noClassroom.equals(label));
+    }
+
+    @Test
+    void no_classroom_equals_same_no_classroom_should_be_true() {
+        // GIVEN
+        final IClassroom noClassroom = new NoClassroom();
+
+        // EXPECT
+        assertTrue(noClassroom.equals(noClassroom));
     }
 
     @Test
