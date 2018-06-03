@@ -7,8 +7,6 @@ import com.mercadolibre.dojo.matchers.Matcher;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 public class Requisition {
 
     private Matcher matcher;
@@ -18,16 +16,9 @@ public class Requisition {
     }
 
     public IClassroom searchMatchingClassroomFrom(List<Classroom> classrooms) {
-        return this.classroomsAvailableForRequisition(classrooms)
+        return this.matcher.returnListOfMatchingClassrooms(classrooms)
                 .stream()
                 .reduce(new NoClassroom(), Challenger::challenge);
-    }
-
-    private List<IClassroom> classroomsAvailableForRequisition(List<Classroom> classrooms) {
-        return classrooms
-                .stream()
-                .map(classroom -> classroom.returnIfMatchesOrElse(this.matcher, new NoClassroom()))
-                .collect(toList());
     }
 
 }

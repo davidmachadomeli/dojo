@@ -3,7 +3,10 @@ package com.mercadolibre.dojo.matchers;
 import com.mercadolibre.dojo.Persons;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
-import com.mercadolibre.dojo.classrooms.NoClassroom;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CapacityOfAtLeast implements Matcher {
 
@@ -14,7 +17,11 @@ public class CapacityOfAtLeast implements Matcher {
     }
 
     @Override
-    public IClassroom returnIfMatchesOrElse(Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
-        return classroomIfMatches.returnIfHasAtLeastAsManyPersonsOrElse(this.persons, classroomIfDoesNotMatches);
+    public Set<IClassroom> returnListOfMatchingClassrooms(List<Classroom> classrooms) {
+        return classrooms
+                .stream()
+                .map(classroom -> classroom.returnIfHasAtLeastAsManyPersons(this.persons))
+                .collect(Collectors.toSet());
     }
+
 }
