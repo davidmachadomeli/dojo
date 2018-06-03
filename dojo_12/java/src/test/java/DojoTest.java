@@ -46,4 +46,15 @@ class DojoTest {
         assertEquals(NoClassroom.class, classroomWithMatchingRequisition.getClass());
     }
 
+    @Test
+    void search_classroom_for_at_least_10_persons_should_return_labB() {
+        // GIVEN
+        final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
+                new RequestForClassroom(new CapacityOfAtLeast(new Persons(10)))
+        );
+
+        // EXPECT
+        assertEquals(this.labB, classroomWithMatchingRequisition);
+    }
+
 }
