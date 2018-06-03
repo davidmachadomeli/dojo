@@ -1,13 +1,13 @@
-import com.mercadolibre.dojo.*;
-import com.mercadolibre.dojo.classroomSpecs.Computers;
-import com.mercadolibre.dojo.classroomSpecs.Persons;
-import com.mercadolibre.dojo.classroomSpecs.SquareMeters;
+import com.mercadolibre.dojo.ClassroomsPool;
+import com.mercadolibre.dojo.Label;
+import com.mercadolibre.dojo.RequestForClassroom;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
-import com.mercadolibre.dojo.matchers.And;
-import com.mercadolibre.dojo.matchers.CapacityOfAtLeast;
-import com.mercadolibre.dojo.matchers.CountsWith;
+import com.mercadolibre.dojo.conditions.Computers;
+import com.mercadolibre.dojo.conditions.Persons;
+import com.mercadolibre.dojo.conditions.SquareMeters;
+import com.mercadolibre.dojo.matchers.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -111,6 +111,41 @@ class DojoTest {
 
         // EXPECT
         assertEquals(this.labD, classroomWithMatchingRequisition);
+    }
+
+    @Test
+    void search_classroom_for_at_least_10_persons_and_less_than_15_square_meters_should_return_labB() {
+        // GIVEN
+        final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
+                new RequestForClassroom(
+                        new And(
+                                new CapacityOfAtLeast(new Persons(10)),
+                                new CapacityOfLessThan(new SquareMeters(30))
+                        )
+                )
+        );
+
+        // EXPECT
+        assertEquals(this.labB, classroomWithMatchingRequisition);
+    }
+
+    @Test
+    void search_classroom_for_at_least_10_persons_and_less_than_15_square_meters_or_has_computers_should_return_labC() {
+        // GIVEN
+        final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
+                new RequestForClassroom(
+                        new And(
+                                new CapacityOfAtLeast(new Persons(10)),
+                                new Or(
+                                        new CapacityOfAtLeast(new SquareMeters(30)),
+                                        new CountsWith(new Computers())
+                                )
+                        )
+                )
+        );
+
+        // EXPECT
+        assertEquals(this.labC, classroomWithMatchingRequisition);
     }
 
 }

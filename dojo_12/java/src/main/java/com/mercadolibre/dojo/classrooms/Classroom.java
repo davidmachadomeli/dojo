@@ -1,34 +1,36 @@
 package com.mercadolibre.dojo.classrooms;
 
-import com.mercadolibre.dojo.classroomSpecs.*;
 import com.mercadolibre.dojo.Label;
+import com.mercadolibre.dojo.conditions.Computers;
+import com.mercadolibre.dojo.conditions.Persons;
+import com.mercadolibre.dojo.conditions.SquareMeters;
+import com.mercadolibre.dojo.conditions.operations.GTE;
+import com.mercadolibre.dojo.conditions.operations.HAS;
+import com.mercadolibre.dojo.conditions.operations.LT;
 
 public class Classroom implements IClassroom {
 
     private Label label;
-    private Persons personsCapacity;
-    private SquareMeters squareMetersCapacity;
-    private Computers computers = new NoComputers();
+    private ClassroomSpecs specs;
 
-    public Classroom(Label label, Persons personsCapacity) {
+    public Classroom(Label label, Persons persons) {
         this.label = label;
-        this.personsCapacity = personsCapacity;
+        this.specs = new ClassroomSpecs(persons);
     }
 
-    public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity) {
-        this(label, personsCapacity);
-        this.squareMetersCapacity = squareMetersCapacity;
+    public Classroom(Label label, Persons persons, SquareMeters squareMeters) {
+        this.label = label;
+        this.specs = new ClassroomSpecs(persons, squareMeters);
     }
 
-    public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity, Computers computers) {
-        this(label, personsCapacity);
-        this.squareMetersCapacity = squareMetersCapacity;
-        this.computers = computers;
+    public Classroom(Label label, Persons persons, SquareMeters squareMeters, Computers computers) {
+        this.label = label;
+        this.specs = new ClassroomSpecs(persons, squareMeters, computers);
     }
 
     public Classroom(Label label, Persons persons, Computers computers) {
-        this(label, persons);
-        this.computers = computers;
+        this.label = label;
+        this.specs = new ClassroomSpecs(persons, computers);
     }
 
     @Override
@@ -36,19 +38,16 @@ public class Classroom implements IClassroom {
         return this;
     }
 
-    public IClassroom returnIfMatchesCondition(ClassroomSpec specToMatch) {
-        return specToMatch.returnIfMatchesCondition(this);
+    public IClassroom returnIfMatchesCondition(GTE operator) {
+        return operator.returnIfGTEOrElse(this.specs, this, new NoClassroom());
     }
 
-    public IClassroom returnIfHasAtLeastAsManyPersons(Persons personsToMatch) {
-        return this.personsCapacity.gte(personsToMatch, this, new NoClassroom());
+    public IClassroom returnIfMatchesCondition(LT operator) {
+        return operator.returnIfLTOrElse(this.specs, this, new NoClassroom());
     }
 
-    public IClassroom returnIfHasAtLeastAsManySquareMeters(SquareMeters squareMetersToMatch) {
-        return this.squareMetersCapacity.gte(squareMetersToMatch, this, new NoClassroom());
+    public IClassroom returnIfMatchesCondition(HAS operator) {
+        return operator.returnIfHasOrElse(this.specs, this, new NoClassroom());
     }
 
-    public IClassroom hasComputers() {
-        return this.computers.hasComputersOrElse(this, new NoClassroom());
-    }
 }

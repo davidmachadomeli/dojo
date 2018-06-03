@@ -1,9 +1,11 @@
-import com.mercadolibre.dojo.*;
-import com.mercadolibre.dojo.classroomSpecs.Persons;
-import com.mercadolibre.dojo.classroomSpecs.SquareMeters;
+import com.mercadolibre.dojo.ClassroomsPool;
+import com.mercadolibre.dojo.Label;
+import com.mercadolibre.dojo.RequestForClassroom;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
+import com.mercadolibre.dojo.conditions.Persons;
+import com.mercadolibre.dojo.conditions.SquareMeters;
 import com.mercadolibre.dojo.matchers.CapacityOfAtLeast;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,8 +22,16 @@ class CapacityOfAtLeastForSquareMetersTest {
 
     @BeforeEach
     void setup() {
-        this.labA = new Classroom(new Label("Lab A"), new Persons(5), new SquareMeters(5));
-        this.labB = new Classroom(new Label("Lab B"), new Persons(15), new SquareMeters(15));
+        this.labA = new Classroom(
+                new Label("Lab A"),
+                new Persons(5),
+                new SquareMeters(5)
+        );
+        this.labB = new Classroom(
+                new Label("Lab B"),
+                new Persons(15),
+                new SquareMeters(15)
+        );
 
         this.pool = new ClassroomsPool(this.labA, this.labB);
     }
