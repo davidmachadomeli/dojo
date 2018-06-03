@@ -12,7 +12,7 @@ public class Persons implements ClassroomSpec {
     }
 
     @Override
-    public IClassroom returnIfHasAtLeastAsMany(Classroom classroom) {
+    public IClassroom returnIfMatchesCondition(Classroom classroom) {
         return classroom.returnIfHasAtLeastAsManyPersons(this);
     }
 

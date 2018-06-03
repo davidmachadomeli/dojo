@@ -12,7 +12,7 @@ public class SquareMeters implements ClassroomSpec {
     }
 
     @Override
-    public IClassroom returnIfHasAtLeastAsMany(Classroom classroom) {
+    public IClassroom returnIfMatchesCondition(Classroom classroom) {
         return classroom.returnIfHasAtLeastAsManySquareMeters(this);
     }
 
