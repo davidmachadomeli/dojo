@@ -2,7 +2,6 @@ package com.mercadolibre.dojo.classrooms;
 
 import com.mercadolibre.dojo.Label;
 import com.mercadolibre.dojo.Persons;
-import com.mercadolibre.dojo.matchers.Matcher;
 
 public class Classroom implements IClassroom {
 
@@ -19,12 +18,8 @@ public class Classroom implements IClassroom {
         return this;
     }
 
-    public IClassroom returnIfMatchesOrElse(Matcher matcher, IClassroom classroomIfDoesNotMatches) {
-        return matcher.returnIfMatchesOrElse(this, classroomIfDoesNotMatches);
-    }
-
-    public IClassroom returnIfHasAtLeastAsManyPersonsOrElse(Persons personsToMatch, IClassroom classroomIfDoesNotMatches) {
-        return this.personsCapacity.gte(personsToMatch, this, classroomIfDoesNotMatches);
+    public IClassroom returnIfHasAtLeastAsManyPersons(Persons personsToMatch) {
+        return this.personsCapacity.gte(personsToMatch, this, new NoClassroom());
     }
 
 }
