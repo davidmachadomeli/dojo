@@ -1,10 +1,10 @@
 import com.mercadolibre.dojo.ClassroomsPool;
 import com.mercadolibre.dojo.Label;
-import com.mercadolibre.dojo.Persons;
 import com.mercadolibre.dojo.RequestForClassroom;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
+import com.mercadolibre.dojo.classrooms.specs.Persons;
 import com.mercadolibre.dojo.matchers.CapacityOfAtLeast;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
