@@ -25,5 +25,4 @@ public class NoClassroom implements IClassroom {
         final NoClassroom noClassroom = (NoClassroom) o;
         return Objects.equals(label, noClassroom.label);
     }
-
 }
