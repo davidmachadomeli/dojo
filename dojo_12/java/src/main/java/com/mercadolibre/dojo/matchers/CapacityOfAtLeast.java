@@ -5,8 +5,8 @@ import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class CapacityOfAtLeast implements Matcher {
 
@@ -17,11 +17,11 @@ public class CapacityOfAtLeast implements Matcher {
     }
 
     @Override
-    public Set<IClassroom> returnListOfMatchingClassrooms(List<Classroom> classrooms) {
+    public List<IClassroom> returnListOfMatchingClassrooms(List<Classroom> classrooms) {
         return classrooms
                 .stream()
                 .map(classroom -> classroom.returnIfHasAtLeastAsManyPersons(this.persons))
-                .collect(Collectors.toSet());
+                .collect(toList());
     }
 
 }

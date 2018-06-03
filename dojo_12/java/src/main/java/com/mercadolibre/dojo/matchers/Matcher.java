@@ -4,10 +4,9 @@ import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 
 import java.util.List;
-import java.util.Set;
 
 public interface Matcher {
 
-    Set<IClassroom> returnListOfMatchingClassrooms(List<Classroom> classrooms);
+    List<IClassroom> returnListOfMatchingClassrooms(List<Classroom> classrooms);
 
 }

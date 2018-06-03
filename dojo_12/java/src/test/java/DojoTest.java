@@ -21,7 +21,7 @@ class DojoTest {
         this.labA = new Classroom(new Label("Lab A"), new Persons(5));
         this.labB = new Classroom(new Label("Lab B"), new Persons(15));
 
-        this.pool = new ClassroomsPool(this.labB, this.labA);
+        this.pool = new ClassroomsPool(this.labA, this.labB);
     }
 
     @AfterEach
@@ -36,7 +36,7 @@ class DojoTest {
     void search_classroom_for_at_least_10_persons_should_return_labB() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new Requisition(new CapacityOfAtLeast(new Persons(10)))
+                new RequestForClassroom(new CapacityOfAtLeast(new Persons(10)))
         );
 
         // EXPECT
@@ -47,7 +47,7 @@ class DojoTest {
     void search_classroom_for_at_least_30_persons_should_return_that_there_is_no_classroom_with_that_specs() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new Requisition(new CapacityOfAtLeast(new Persons(30)))
+                new RequestForClassroom(new CapacityOfAtLeast(new Persons(30)))
         );
 
         // EXPECT
