@@ -4,7 +4,6 @@ import com.mercadolibre.dojo.Persons;
 import com.mercadolibre.dojo.RequestForClassroom;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
-import com.mercadolibre.dojo.classrooms.NoClassroom;
 import com.mercadolibre.dojo.matchers.CapacityOfAtLeast;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DojoTest {
+class ExtraDojoTest {
 
     private ClassroomsPool pool;
 
@@ -36,25 +35,14 @@ class DojoTest {
     }
 
     @Test
-    void search_classroom_for_at_least_30_persons_should_return_that_there_is_no_classroom_with_that_specs() {
+    void search_classroom_for_at_least_5_persons_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(30)))
+                new RequestForClassroom(new CapacityOfAtLeast(new Persons(5)))
         );
 
         // EXPECT
-        assertEquals(NoClassroom.class, classroomWithMatchingRequisition.getClass());
-    }
-
-    @Test
-    void search_classroom_for_at_least_10_persons_should_return_labB() {
-        // GIVEN
-        final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(10)))
-        );
-
-        // EXPECT
-        assertEquals(this.labB, classroomWithMatchingRequisition);
+        assertEquals(this.labA, classroomWithMatchingRequisition);
     }
 
 }

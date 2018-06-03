@@ -1,4 +1,6 @@
 package com.mercadolibre.dojo.classrooms;
 
-public interface IClassroom {
+import com.mercadolibre.dojo.Challenger;
+
+public interface IClassroom extends Challenger<IClassroom> {
 }

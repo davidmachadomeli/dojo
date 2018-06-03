@@ -4,14 +4,20 @@ import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
 public class ClassroomsPool {
 
-    public ClassroomsPool(Classroom... classrooms) {
+    private List<Classroom> availableClassrooms;
 
+    public ClassroomsPool(Classroom... availableClassrooms) {
+        this.availableClassrooms = asList(availableClassrooms);
     }
 
     public IClassroom searchClassroomFor(RequestForClassroom requestForClassroom) {
-        return new NoClassroom();
+        return requestForClassroom.searchMatchingFrom(this.availableClassrooms);
     }
 
 }
