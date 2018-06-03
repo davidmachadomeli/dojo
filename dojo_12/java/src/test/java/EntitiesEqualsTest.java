@@ -1,8 +1,8 @@
 import com.mercadolibre.dojo.Label;
-import com.mercadolibre.dojo.classroomSpecs.Persons;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
+import com.mercadolibre.dojo.conditions.Persons;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
