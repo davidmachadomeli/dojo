@@ -20,9 +20,9 @@ public class NoClassroom implements IClassroom {
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;
-        if (!(o instanceof NoClassroom)) {
-            return false;
-        }
+//        if (!(o instanceof NoClassroom)) {
+//            return false;
+//        }
 
         final NoClassroom noClassroom = (NoClassroom) o;
         return Objects.equals(label, noClassroom.label);
