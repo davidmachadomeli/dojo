@@ -1,5 +1,5 @@
 import com.mercadolibre.dojo.Label;
-import com.mercadolibre.dojo.Persons;
+import com.mercadolibre.dojo.classroomSpecs.Persons;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;

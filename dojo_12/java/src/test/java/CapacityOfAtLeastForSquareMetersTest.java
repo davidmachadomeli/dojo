@@ -1,7 +1,6 @@
-import com.mercadolibre.dojo.ClassroomsPool;
-import com.mercadolibre.dojo.Label;
+import com.mercadolibre.dojo.*;
 import com.mercadolibre.dojo.classroomSpecs.Persons;
-import com.mercadolibre.dojo.RequestForClassroom;
+import com.mercadolibre.dojo.classroomSpecs.SquareMeters;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CapacityOfAtLeastForPersonsTest {
+class CapacityOfAtLeastForSquareMetersTest {
 
     private ClassroomsPool pool;
 
@@ -21,8 +20,8 @@ class CapacityOfAtLeastForPersonsTest {
 
     @BeforeEach
     void setup() {
-        this.labA = new Classroom(new Label("Lab A"), new Persons(5));
-        this.labB = new Classroom(new Label("Lab B"), new Persons(15));
+        this.labA = new Classroom(new Label("Lab A"), new Persons(5), new SquareMeters(5));
+        this.labB = new Classroom(new Label("Lab B"), new Persons(15), new SquareMeters(15));
 
         this.pool = new ClassroomsPool(this.labA, this.labB);
     }
@@ -36,10 +35,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_4_persons_should_return_labA() {
+    void search_classroom_for_at_least_4_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(4)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(4)))
         );
 
         // EXPECT
@@ -47,10 +46,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_5_persons_should_return_labA() {
+    void search_classroom_for_at_least_5_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(5)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(5)))
         );
 
         // EXPECT
@@ -58,10 +57,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_6_persons_should_return_labA() {
+    void search_classroom_for_at_least_6_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(6)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(6)))
         );
 
         // EXPECT
@@ -69,10 +68,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_14_persons_should_return_labA() {
+    void search_classroom_for_at_least_14_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(14)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(14)))
         );
 
         // EXPECT
@@ -80,10 +79,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_15_persons_should_return_labA() {
+    void search_classroom_for_at_least_15_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(15)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(15)))
         );
 
         // EXPECT
@@ -91,10 +90,10 @@ class CapacityOfAtLeastForPersonsTest {
     }
 
     @Test
-    void search_classroom_for_at_least_16_persons_should_return_labA() {
+    void search_classroom_for_at_least_16_square_meters_should_return_labA() {
         // GIVEN
         final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
-                new RequestForClassroom(new CapacityOfAtLeast(new Persons(16)))
+                new RequestForClassroom(new CapacityOfAtLeast(new SquareMeters(16)))
         );
 
         // EXPECT
