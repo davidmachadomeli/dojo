@@ -10,7 +10,6 @@ public class Computers implements HAS {
     @Override
     public IClassroom returnIfHasOrElse(ClassroomSpecs specs, Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
         return specs.hasComputersOrElse(classroomIfMatches, classroomIfDoesNotMatches);
-
     }
 
     public IClassroom hasOrElse(Classroom classroomIfHas, IClassroom classroomIfDoesNotHas) {

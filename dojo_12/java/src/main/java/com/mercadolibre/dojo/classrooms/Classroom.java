@@ -1,6 +1,7 @@
 package com.mercadolibre.dojo.classrooms;
 
 import com.mercadolibre.dojo.Label;
+import com.mercadolibre.dojo.classrooms.specs.BlackBoard;
 import com.mercadolibre.dojo.classrooms.specs.Computers;
 import com.mercadolibre.dojo.classrooms.specs.Persons;
 import com.mercadolibre.dojo.classrooms.specs.SquareMeters;
@@ -9,14 +10,22 @@ import com.mercadolibre.dojo.matchers.operations.HAS;
 
 public class Classroom implements IClassroom {
 
+    private Label label;
     private ClassroomSpecs specs;
 
     public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity) {
+        this.label = label;
         this.specs = new ClassroomSpecs(personsCapacity, squareMetersCapacity);
     }
 
     public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity, Computers computers) {
+        this.label = label;
         this.specs = new ClassroomSpecs(personsCapacity, squareMetersCapacity, computers);
+    }
+
+    public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity, BlackBoard blackBoard) {
+        this.label = label;
+        this.specs = new ClassroomSpecs(personsCapacity, squareMetersCapacity, blackBoard);
     }
 
     @Override

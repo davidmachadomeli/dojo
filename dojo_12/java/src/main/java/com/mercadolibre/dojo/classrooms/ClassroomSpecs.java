@@ -1,15 +1,13 @@
 package com.mercadolibre.dojo.classrooms;
 
-import com.mercadolibre.dojo.classrooms.specs.Computers;
-import com.mercadolibre.dojo.classrooms.specs.NoComputers;
-import com.mercadolibre.dojo.classrooms.specs.Persons;
-import com.mercadolibre.dojo.classrooms.specs.SquareMeters;
+import com.mercadolibre.dojo.classrooms.specs.*;
 
 public class ClassroomSpecs {
 
     private Persons personsCapacity;
     private SquareMeters squareMetersCapacity;
     private Computers computers = new NoComputers();
+    private BlackBoard blackBoard = new NoBlackBoard();
 
     public ClassroomSpecs(Persons personsCapacity, SquareMeters squareMetersCapacity) {
         this.personsCapacity = personsCapacity;
@@ -19,6 +17,11 @@ public class ClassroomSpecs {
     public ClassroomSpecs(Persons personsCapacity, SquareMeters squareMetersCapacity, Computers computers) {
         this(personsCapacity, squareMetersCapacity);
         this.computers = computers;
+    }
+
+    public ClassroomSpecs(Persons personsCapacity, SquareMeters squareMetersCapacity, BlackBoard blackBoard) {
+        this(personsCapacity, squareMetersCapacity);
+        this.blackBoard = blackBoard;
     }
 
     public IClassroom returnIfGTEPersonsOrElse(Persons persons, Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
@@ -31,6 +34,10 @@ public class ClassroomSpecs {
 
     public IClassroom hasComputersOrElse(Classroom classroomIfHas, IClassroom classroomIfDoesNotHas) {
         return this.computers.hasOrElse(classroomIfHas, classroomIfDoesNotHas);
+    }
+
+    public IClassroom hasBlackBoardOrElse(Classroom classroomIfHas, IClassroom classroomIfDoesNotHas) {
+        return this.blackBoard.hasOrElse(classroomIfHas, classroomIfDoesNotHas);
     }
 
 }
