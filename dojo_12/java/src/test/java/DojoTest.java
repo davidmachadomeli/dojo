@@ -4,10 +4,12 @@ import com.mercadolibre.dojo.RequestForClassroom;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.classrooms.NoClassroom;
+import com.mercadolibre.dojo.classrooms.specs.Computers;
 import com.mercadolibre.dojo.classrooms.specs.Persons;
 import com.mercadolibre.dojo.classrooms.specs.SquareMeters;
 import com.mercadolibre.dojo.matchers.And;
 import com.mercadolibre.dojo.matchers.CapacityOfAtLeast;
+import com.mercadolibre.dojo.matchers.CountsWith;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,7 @@ class DojoTest {
     private Classroom labA;
     private Classroom labB;
     private Classroom labC;
+    private Classroom labD;
 
     @BeforeEach
     void setup() {
@@ -39,8 +42,14 @@ class DojoTest {
                 new Persons(15),
                 new SquareMeters(50)
         );
+        this.labD = new Classroom(
+                new Label("Lab D"),
+                new Persons(15),
+                new SquareMeters(50),
+                new Computers()
+        );
 
-        this.pool = new ClassroomsPool(this.labA, this.labB, this.labC);
+        this.pool = new ClassroomsPool(this.labA, this.labB, this.labC, this.labD);
     }
 
     @AfterEach
@@ -87,6 +96,23 @@ class DojoTest {
 
         // EXPECT
         assertEquals(this.labC, classroomWithMatchingRequisition);
+    }
+
+    @Test
+    void search_classroom_for_at_least_10_persons_and_30_square_meters_and_has_computers_should_return_labC() {
+        // GIVEN
+        final IClassroom classroomWithMatchingRequisition = this.pool.searchClassroomFor(
+                new RequestForClassroom(
+                        new And(
+                                new CapacityOfAtLeast(new Persons(10)),
+                                new CapacityOfAtLeast(new SquareMeters(30)),
+                                new CountsWith(new Computers())
+                        )
+                )
+        );
+
+        // EXPECT
+        assertEquals(this.labD, classroomWithMatchingRequisition);
     }
 
 }

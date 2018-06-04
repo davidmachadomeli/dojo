@@ -2,17 +2,17 @@ package com.mercadolibre.dojo.matchers;
 
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
-import com.mercadolibre.dojo.matchers.operations.GTE;
+import com.mercadolibre.dojo.matchers.operations.HAS;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class CapacityOfAtLeast implements Matcher {
+public class CountsWith implements Matcher {
 
-    private GTE operator;
+    private HAS operator;
 
-    public CapacityOfAtLeast(GTE operator) {
+    public CountsWith(HAS operator) {
         this.operator = operator;
     }
 
