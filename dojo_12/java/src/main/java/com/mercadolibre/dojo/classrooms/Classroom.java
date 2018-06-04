@@ -9,10 +9,6 @@ public class Classroom implements IClassroom {
 
     private ClassroomSpecs specs;
 
-    public Classroom(Label label, Persons personsCapacity) {
-        this.specs = new ClassroomSpecs(personsCapacity);
-    }
-
     public Classroom(Label label, Persons personsCapacity, SquareMeters squareMetersCapacity) {
         this.specs = new ClassroomSpecs(personsCapacity, squareMetersCapacity);
     }

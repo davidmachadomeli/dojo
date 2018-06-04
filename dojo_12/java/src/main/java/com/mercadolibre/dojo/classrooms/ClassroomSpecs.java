@@ -8,10 +8,6 @@ public class ClassroomSpecs {
     private Persons personsCapacity;
     private SquareMeters squareMetersCapacity;
 
-    public ClassroomSpecs(Persons personsCapacity) {
-        this.personsCapacity = personsCapacity;
-    }
-
     public ClassroomSpecs(Persons personsCapacity, SquareMeters squareMetersCapacity) {
         this.personsCapacity = personsCapacity;
         this.squareMetersCapacity = squareMetersCapacity;
