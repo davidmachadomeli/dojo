@@ -1,8 +1,9 @@
-package com.mercadolibre.dojo;
+package com.mercadolibre.dojo.classroomSpecs;
 
+import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 
-public class Persons {
+public class Persons implements ClassroomSpec {
 
     private Integer quantity;
 
@@ -10,8 +11,12 @@ public class Persons {
         this.quantity = quantity;
     }
 
+    @Override
+    public IClassroom returnIfHasAtLeastAsMany(Classroom classroom) {
+        return classroom.returnIfHasAtLeastAsManyPersons(this);
+    }
+
     public IClassroom gte(Persons personsToMatch, IClassroom classroomIfGTE, IClassroom classroomIfNotGTE) {
         return this.quantity >= personsToMatch.quantity ? classroomIfGTE : classroomIfNotGTE;
     }
-
 }
