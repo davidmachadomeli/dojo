@@ -2,7 +2,6 @@ package com.mercadolibre.dojo;
 
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
-import com.mercadolibre.dojo.classrooms.NoClassroom;
 
 import java.util.List;
 
