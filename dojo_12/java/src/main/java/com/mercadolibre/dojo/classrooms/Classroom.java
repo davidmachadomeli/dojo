@@ -7,6 +7,7 @@ import com.mercadolibre.dojo.classrooms.specs.Persons;
 import com.mercadolibre.dojo.classrooms.specs.SquareMeters;
 import com.mercadolibre.dojo.matchers.operations.GTE;
 import com.mercadolibre.dojo.matchers.operations.HAS;
+import com.mercadolibre.dojo.matchers.operations.LT;
 
 public class Classroom implements IClassroom {
 
@@ -33,12 +34,16 @@ public class Classroom implements IClassroom {
         return this;
     }
 
-    public IClassroom returnIfMatchesCondition(GTE conditionToMatch) {
-        return conditionToMatch.gte(this.specs, this, new NoClassroom());
+    public IClassroom returnIfMatchesCondition(GTE operator) {
+        return operator.gte(this.specs, this, new NoClassroom());
     }
 
     public IClassroom returnIfMatchesCondition(HAS operator) {
         return operator.returnIfHasOrElse(this.specs, this, new NoClassroom());
+    }
+
+    public IClassroom returnIfMatchesCondition(LT operator) {
+        return operator.lt(this.specs, this, new NoClassroom());
     }
 
 }

@@ -40,4 +40,7 @@ public class ClassroomSpecs {
         return this.blackBoard.hasOrElse(classroomIfHas, classroomIfDoesNotHas);
     }
 
+    public IClassroom returnIfLTSquareMetersOrElse(SquareMeters squareMeters, Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
+        return this.squareMetersCapacity.lt(squareMeters, classroomIfMatches, classroomIfDoesNotMatches);
+    }
 }
