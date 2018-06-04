@@ -3,10 +3,7 @@ package com.mercadolibre.dojo.matchers;
 import com.mercadolibre.dojo.classrooms.Classroom;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
@@ -26,7 +23,7 @@ public class And implements Matcher {
     }
 
     private Set<IClassroom> getIntersectionOfListOfListOfClassroomsThatMatched(List<List<IClassroom>> listOfClassrooms) {
-        final Set<IClassroom> intersectionSet = new HashSet<>();
+        final Set<IClassroom> intersectionSet = new LinkedHashSet<>();
         intersectionSet.addAll(this.findFirstClassroomsMatchesOrElseEmptyList(listOfClassrooms));
         listOfClassrooms.forEach(x -> intersectionSet.retainAll(new HashSet<>(x)));
         return intersectionSet;
