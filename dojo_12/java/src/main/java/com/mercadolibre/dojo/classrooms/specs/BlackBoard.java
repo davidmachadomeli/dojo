@@ -5,16 +5,15 @@ import com.mercadolibre.dojo.classrooms.ClassroomSpecs;
 import com.mercadolibre.dojo.classrooms.IClassroom;
 import com.mercadolibre.dojo.matchers.operations.HAS;
 
-public class Computers implements HAS {
+public class BlackBoard implements HAS {
 
     @Override
     public IClassroom returnIfHasOrElse(ClassroomSpecs specs, Classroom classroomIfMatches, IClassroom classroomIfDoesNotMatches) {
-        return specs.hasComputersOrElse(classroomIfMatches, classroomIfDoesNotMatches);
+        return specs.hasBlackBoardOrElse(classroomIfMatches, classroomIfDoesNotMatches);
     }
 
     public IClassroom hasOrElse(Classroom classroomIfHas, IClassroom classroomIfDoesNotHas) {
         return classroomIfHas;
-
     }
 
 }
